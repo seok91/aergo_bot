@@ -32,21 +32,17 @@ class Premium:
                 await asyncio.sleep(COMPARE_PRICE_DELAY)  # 거래소별 connect_socket를 통해 가져와야할 코인정보가 있어서 대기
                 exchange_price = self.exchange_price.copy()  # 거래소에서 얻어온 가격데이터 복사
 
-                #print(exchange_price)
-
                 base_exchange_price = float(exchange_price['AERGO']['Bithumb']["ask_price"]) \
                     if float(exchange_price['AERGO']['Bithumb']["ask_price"]) > 0 else float(
                     exchange_price['AERGO']['Bithumb']["ask_price"])
 
                 base_volume = float(exchange_price['AERGO']['Bithumb']["ask_size"]) * base_exchange_price
 
-
                 compare_exchange_price = float(exchange_price['AERGO']['Upbit']["bid_price"]) \
                     if float(exchange_price['AERGO']['Upbit']["bid_price"]) > 0 else float(
                     exchange_price['AERGO']['Upbit']["bid_price"])
 
                 compare_volume = float(exchange_price['AERGO']['Upbit']["bid_size"]) * compare_exchange_price
-
 
                 # 거래소간의 가격차이(%)
                 diff = round((compare_exchange_price - base_exchange_price) / compare_exchange_price * 100, 3) if base_exchange_price else 0

@@ -41,7 +41,6 @@ async def connect_socket(exchange_price):
                             continue
 
                         ticker = data['content']['symbol'].split('_')[0]
-                        #print(ticker)  # 결과출력 테스트(주석)
 
                         if ticker not in exchange_price:
                             exchange_price[ticker] = {exchange: None}
@@ -55,9 +54,6 @@ async def connect_socket(exchange_price):
 
                             exchange_price[ticker][exchange] = {'ask_price': ask_price, 'bid_price': bid_price,
                                                                 'ask_size': ask_size, 'bid_size': bid_size}
-
-
-                            #print(exchange_price)
 
 
                         if util.is_need_reset_socket(start_time):  # 매일 아침 9시 소켓 재연결

@@ -42,7 +42,6 @@ async def connect_socket(exchange_price):
                         data = await websocket.recv()
                         data = json.loads(data)
 
-                        #print(data)
                         if 'code' not in data:  # 응답 데이터(딕셔너리)에 code가 없는 경우 제외
                             print("[Data error]", data)
                             continue
@@ -62,8 +61,6 @@ async def connect_socket(exchange_price):
                             bid_size = orderbook_units[0]['bid_size']
                             exchange_price[ticker][exchange] = {'ask_price': ask_price, 'bid_price': bid_price,
                                                                 'ask_size': ask_size, 'bid_size': bid_size}
-
-                            #print(exchange_price) # 테스트
 
                         if util.is_need_reset_socket(start_time):  # 매일 아침 9시 소켓 재연결
                             util.send_to_telegram('[{}] Time to new connection...'.format(exchange))
