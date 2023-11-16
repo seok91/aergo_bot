@@ -49,6 +49,12 @@ class Premium:
 
                 current_time = datetime.now().strftime('%H:%M:%S')
                 message = (f"[{current_time}] {'AERGO'} [[{diff:.1f}%]] \n")
+
+                # message += (f"({'Bithumb'}) {base_exchange_price:,.1f}원 / {(base_volume / 1000000):.1f} 백만\n"
+                #             f"({'Upbit'}) {compare_exchange_price:,.0f}원 / {(compare_volume / 1000000):.1f} 백만\n"
+                #             f"--------------------------------\n\n")
+                # print(message)
+
                 if base_volume >= 2000000:  # 거래대금 200만 이상인 경우
                     message += (f"({'Bithumb'}) {base_exchange_price:,.1f}원 / {(base_volume / 1000000):.1f} 백만\n"
                                 f"({'Upbit'}) {compare_exchange_price:,.0f}원 / {(compare_volume / 1000000):.1f} 백만\n"
@@ -57,6 +63,7 @@ class Premium:
                     if diff > 3:  # 미리 설정한 알림기준을 넘으면 출력
                         print(message)
                         post_message("매크로-알림", message)  # 슬랙 전송
+
 
             except Exception as e:
                 util.send_to_telegram(traceback.format_exc())
