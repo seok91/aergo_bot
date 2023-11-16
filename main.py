@@ -55,7 +55,7 @@ class Premium:
                 #             f"--------------------------------\n\n")
                 # print(message)
 
-                if base_volume >= 2000000:  # 거래대금 200만 이상인 경우
+                if base_volume >= 2000000:  # 최우선 호가 거래 대금이 200만 이상인 경우
                     message += (f"({'Bithumb'}) {base_exchange_price:,.1f}원 / {(base_volume / 1000000):.1f} 백만\n"
                                 f"({'Upbit'}) {compare_exchange_price:,.0f}원 / {(compare_volume / 1000000):.1f} 백만\n"
                                 f"--------------------------------\n\n")
